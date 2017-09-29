@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>scriptlist.txt</file>
+    </qresource>
+</RCC>
