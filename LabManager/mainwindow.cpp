@@ -23,7 +23,7 @@ void MainWindow::loadScriptList()
     scriptListFile.open(QIODevice::ReadOnly);
     QTextStream textStream(&scriptListFile);
 
-    while(!textStream.atEnd())
+    while (!textStream.atEnd())
         scriptList.append(textStream.readLine());
 
     ui->scriptList->addItems(scriptList);
@@ -32,5 +32,13 @@ void MainWindow::loadScriptList()
 void MainWindow::on_findButton_clicked()
 {
     QString searchScript = ui->findScript->text();
+
+    for (int i = 0; i < ui->scriptList->count(); i++) {
+        QString itemsScriptList = ui->scriptList->item(i)->text();
+        if (!itemsScriptList.contains(searchScript, Qt::CaseInsensitive))
+            ui->scriptList->setRowHidden(i, true);
+        else
+            ui->scriptList->setRowHidden(i, false);
+    }
 
 }
